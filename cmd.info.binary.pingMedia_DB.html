@@ -1,0 +1,40 @@
+<div style="width:90px;min-height:62px;" class="cmd #history# container-fluid tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#"  title="Valeur du #valueDate#, collectée le #collectDate#">
+  <div class="custom-title" style="vertical-align:middle; margin-top:0px; width:70px; height:26px;">#name#</div>
+	<center>
+		<span style="margin-top: 5px;margin-bottom: 5px;margin-left: 5px;margin-right: 5px;" class="action" id="iconCmd#id#"></span>
+	</center>
+	<script>
+		var param_type 	= "#type#";	// Get the parameter : defaut, linux, mac, nas, raspi, videoProj, windows, xbmc, ...
+		var value_type	= "defaut";
+		var value_state	= "off"; // 1=on, 0=off, -1=veille
+      
+		// Liste des icones dispos
+		var available_type = ["defaut","linux","mac","portmac","nas","nas2","raspi","videoProj",
+                              "windows","portwin","print","print2","print3","print4","xpenology",
+                              "kodi","playstation","tv","xbox","xbmc","voyant","firewall","freebox",
+                              "jeedom","jeedomlan","jeedomwifi","ipx800","asterisk","karotz","videophone",
+                              "amplihc","tv2","camera","iPad","iPhone4","LG_g3","note8","OneTouch","pc","pc2",
+                              "raspbmc","sarah","switch","tab4","cast","eventghost","pawjeedom","pihole",
+                              "speaker","onduleur","alarme","Livebox","BBOX","BBOX_TV","BL_AIRSENSOR",
+							  "BL_MULTIPRISE","BOUYGUES","BOX","BROADLINK","BROADLINK_PRO","FREE","FREEBOX_TV",
+							  "FREEBOX","GATEWAY","LIVEBOX_logo","LIVEBOX","ORANGE","SFR","SFRBOX"];
+      
+		if(available_type.indexOf(param_type) != -1){
+            // Si la valeur demandees est bien definies dans la liste, on l'utilise
+			value_type = param_type;
+		}
+		
+		if ('#state#' == '1' || '#state#' == 1) {
+			value_state = "on";
+		} else if ('#state#' == '0' || '#state#' == 0) {
+			value_state = "off";
+		} else {
+			value_state = "veille";
+		}
+		
+		var iconPath = "plugins/widget/core/template/dashboard/cmd.info.binary.pingMedia_DB/" + value_type + "_" + value_state + ".png";
+		
+		$('#iconCmd#id#').append('<img src="' + iconPath + '" />');
+		
+	</script>
+</div>
